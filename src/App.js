@@ -15,15 +15,43 @@ import SavingsInfo from './components/SavingsInfo';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState(null);
+  const [percent, setPercent] = useState(0);
+  const [salary, setSalary] = useState(100000);
+  const [expense, setExpense] = useState(0);
+  const [savings, setSavings] = useState(0);
   return (
     <Router>
       <div className="app">
         <Switch>
           <Route path="/budget">
-            <BudgetPlanner username={username} />
+            {isLoggedIn ? (
+              <BudgetPlanner
+                username={username}
+                setUsername={setUsername}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                percent={percent}
+                setPercent={setPercent}
+                salary={salary}
+                setSalary={setSalary}
+                expense={expense}
+                setExpense={setExpense}
+                savings={savings}
+                setSavings={setSavings}
+              />
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="/savings">
-            <SavingsInfo username={username} />
+            <SavingsInfo
+              username={username}
+              setUsername={setUsername}
+              percent={percent}
+              salary={salary}
+              expense={expense}
+              savings={savings}
+            />
           </Route>
           <Route path="/">
             {isLoggedIn ? (
