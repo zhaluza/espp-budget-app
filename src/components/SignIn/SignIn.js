@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import './signIn.scss';
 
 const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
-  const [clientId, setClientId] = useState('');
   useEffect(() => {
-    const getClientId = async () => {
-      try {
-        const response = await fetch('/auth/getId');
-        const json = await response.json();
-        setClientId(json.clientId);
-      } catch (err) {
-        throw new Error(err);
-      }
-    };
     const checkCookies = async () => {
       const response = await fetch('/auth/checkSession');
       const json = await response.json();
@@ -20,7 +11,6 @@ const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
       }
     };
     checkCookies();
-    getClientId();
   }, []);
 
   // log user in when username is updated
@@ -30,10 +20,8 @@ const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
 
   return (
     <div>
-      <button type="button">
-        <a
-          href={`https://github.com/login/oauth/authorize?client_id=${clientId}`}
-        >
+      <button className="btn big-btn" type="button">
+        <a href="https://github.com/login/oauth/authorize?client_id=f19e5c8797adfbdf16f7">
           Log in with Github
         </a>
       </button>
