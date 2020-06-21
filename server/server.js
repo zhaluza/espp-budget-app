@@ -33,15 +33,19 @@ app.use('/redirect', async (req, res) => {
     console.log('got user info');
     console.log(userInfo.data.name);
     return res
-      .cookie('user', userInfo.data.name, { httpOnly: true, maxAge: 60000 })
-      .end();
+      .cookie('user', userInfo.data.name, {
+        httpOnly: true,
+        // expires in 10 minutes
+        maxAge: 600000,
+      })
+      .redirect('http://localhost:8080');
   } catch (err) {
     console.log('oops');
   }
 });
 
 // check for cookie with hashed name
-app.get('/checkSession', (req, res) => {
+app.get('/auth/checkSession', (req, res) => {
   if (!req.cookies.user) {
     return res.json({ message: 'No cookie found' });
   }
