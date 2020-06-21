@@ -5,6 +5,7 @@
   border: none;
   padding: 2rem;
   border-radius: 7px;
+  max-width: 90vw;
   box-shadow: $box-shadow;
   .row {
     &:nth-child(odd) {
