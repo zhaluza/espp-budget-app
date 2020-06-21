@@ -40,6 +40,14 @@ const BudgetPlanner = ({
     checkCookies();
   }, []);
 
+  const logOut = async () => {
+    const response = await fetch('/auth/logout');
+    if (response) {
+      setIsLoggedIn(false);
+      setUsername(null);
+    }
+  };
+
   return (
     <div className="budget card">
       <h2>Select your monthly budget, {username}.</h2>
@@ -74,6 +82,9 @@ const BudgetPlanner = ({
 
       <button className="btn small-btn">
         <Link to="/savings">Confirm Selection</Link>
+      </button>
+      <button className="btn small-btn btn-alert" onClick={() => logOut()}>
+        Log Out
       </button>
     </div>
   );
