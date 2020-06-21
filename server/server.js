@@ -53,6 +53,10 @@ app.get('/auth/getId', (req, res) => {
   return res.json({ clientId: process.env.CLIENT_ID });
 });
 
+app.get('/auth/logout', (req, res) => {
+  return res.clearCookie('user').end();
+});
+
 app.listen(PORT, () => {
   console.log(`app listening on ${PORT}`);
 });
