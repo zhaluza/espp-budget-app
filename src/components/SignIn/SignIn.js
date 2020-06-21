@@ -12,19 +12,21 @@ const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
         throw new Error(err);
       }
     };
-
     const checkCookies = async () => {
       const response = await fetch('/auth/checkSession');
       const json = await response.json();
       if (json.name) {
-        console.log(json.name);
         setUsername(json.name);
-        setIsLoggedIn(true);
       }
     };
     checkCookies();
     getClientId();
   }, []);
+
+  // log user in when username is updated
+  useEffect(() => {
+    if (username) setIsLoggedIn(true);
+  }, [username]);
 
   return (
     <div>
