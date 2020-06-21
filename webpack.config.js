@@ -7,15 +7,17 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
   mode: process.env.NODE_ENV,
   devServer: {
-    contentBase: path.join(__dirname, 'src'),
-    compress: true,
-    port: 8080,
+    // contentBase: path.join(__dirname, 'src'),
+    historyApiFallback: true,
+    // compress: true,
+    // port: 8080,
     proxy: {
-      '/': 'http://localhost:3000',
+      '/auth': 'http://localhost:3000',
     },
   },
   entry: './src/index.js',
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
@@ -29,14 +31,6 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: 'html-loader',
-      //     },
-      //   ],
-      // },
       {
         test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
