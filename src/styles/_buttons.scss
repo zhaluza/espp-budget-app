@@ -1,0 +1,28 @@
+@import './colors';
+@import './constants';
+
+.btn {
+  padding: 1rem;
+  background-color: $accent;
+  color: $light;
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.big-btn {
+  font-size: 2rem;
+}
+
+.small-btn {
+  font-size: 1.25rem;
+}
