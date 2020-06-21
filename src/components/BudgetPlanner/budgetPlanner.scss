@@ -1,0 +1,39 @@
+@import '../../styles/colors';
+@import '../../styles/constants';
+
+.budget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .budget__slider-container {
+    width: 75%;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .budget__slider-percentage {
+      font-size: 1.5rem;
+    }
+
+    .budget__slider-input {
+      width: 75%;
+      border-radius: $border-radius;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+  }
+
+  .budget__data-container {
+    width: 100%;
+
+    .budget__data-input-container {
+      display: flex;
+    }
+  }
+}
+
+.btn {
+  margin-top: 1rem;
+}
