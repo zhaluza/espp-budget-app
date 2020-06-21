@@ -1,7 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
+  const [clientId, setClientId] = useState('');
   useEffect(() => {
+    const getClientId = async () => {
+      try {
+        const response = await fetch('/auth/getId');
+        const json = await response.json();
+        setClientId(json.clientId);
+      } catch (err) {
+        throw new Error(err);
+      }
+    };
+
     const checkCookies = async () => {
       const response = await fetch('/auth/checkSession');
       const json = await response.json();
@@ -12,12 +23,15 @@ const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
       }
     };
     checkCookies();
+    getClientId();
   }, []);
 
   return (
     <div>
       <button type="button">
-        <a href="https://github.com/login/oauth/authorize?client_id=f461ae880c8cfd2bb133">
+        <a
+          href={`https://github.com/login/oauth/authorize?client_id=${clientId}`}
+        >
           Log in with Github
         </a>
       </button>
