@@ -52,6 +52,12 @@ app.get('/auth/checkSession', (req, res) => {
   return res.json({ name: req.cookies.user });
 });
 
+// send client id to front end
+app.get('/auth/getId', (req, res) => {
+  console.log('sending client id');
+  return res.json({ clientId: process.env.CLIENT_ID });
+});
+
 app.listen(PORT, () => {
   console.log(`app listening on ${PORT}`);
 });
