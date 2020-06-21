@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from 'react-router-dom';
 import './styles/application.scss';
 
 import SignIn from './components/SignIn';
@@ -14,18 +20,22 @@ function App() {
       <div className="app">
         <Switch>
           <Route path="/budget">
-            <BudgetPlanner />
+            <BudgetPlanner username={username} />
           </Route>
           <Route path="/savings">
-            <SavingsInfo />
+            <SavingsInfo username={username} />
           </Route>
           <Route path="/">
-            <SignIn
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-              username={username}
-              setUsername={setUsername}
-            />
+            {isLoggedIn ? (
+              <Redirect to="/budget" />
+            ) : (
+              <SignIn
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                username={username}
+                setUsername={setUsername}
+              />
+            )}
           </Route>
         </Switch>
       </div>
