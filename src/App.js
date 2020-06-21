@@ -33,7 +33,12 @@ function App() {
           </Route>
           <Route path="/savings">
             {isLoggedIn ? (
-              <SavingsInfo username={username} setUsername={setUsername} />
+              <SavingsInfo
+                username={username}
+                setUsername={setUsername}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
             ) : (
               <Redirect to="/" />
             )}
