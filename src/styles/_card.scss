@@ -1,0 +1,21 @@
+@import './colors';
+@import './constants';
+
+.card {
+  border: none;
+  padding: 2rem;
+  border-radius: 7px;
+  box-shadow: $box-shadow;
+  .row {
+    &:nth-child(odd) {
+      background-color: $gray-lt;
+    }
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    input {
+      width: 5rem;
+      font-size: 1rem;
+    }
+  }
+}
