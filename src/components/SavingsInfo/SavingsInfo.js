@@ -1,6 +1,15 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+// import * as actions from '../../actions/actions';
 import { Link } from 'react-router-dom';
 import { formatNum } from '../../functions/helperFunctions';
+
+const mapStateToProps = (state) => ({
+  percent: state.data.percent,
+  salary: state.data.salary,
+  savings: state.data.savings,
+  expense: state.data.expense,
+});
 
 const SavingsInfo = ({
   username,
@@ -48,4 +57,4 @@ const SavingsInfo = ({
   );
 };
 
-export default SavingsInfo;
+export default connect(mapStateToProps)(SavingsInfo);

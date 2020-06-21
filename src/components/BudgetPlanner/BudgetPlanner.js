@@ -1,27 +1,32 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/actions';
 import { Link } from 'react-router-dom';
 import { formatNum } from '../../functions/helperFunctions';
+
+const mapStateToProps = (state) => ({
+  percent: state.data.percent,
+  salary: state.data.salary,
+  expense: state.data.expense,
+  savings: state.data.savings,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handlePercent: (event) => dispatch(actions.handlePercent(event.target.value)),
+  handleSalary: (event) => dispatch(actions.handleSalary(event.target.value)),
+});
 
 const BudgetPlanner = ({
   username,
   setUsername,
   setIsLoggedIn,
+  handlePercent,
+  handleSalary,
   percent,
-  setPercent,
   salary,
-  setSalary,
   expense,
-  setExpense,
   savings,
-  setSavings,
 }) => {
-  const handleBudget = (e) => {
-    setPercent(e);
-    const val = e / 100;
-    setExpense(formatNum((salary / 12) * val));
-    setSavings(formatNum((salary / 12) * (1 - val)));
-  };
-
   useEffect(() => {
     const checkCookies = async () => {
       const response = await fetch('/auth/checkSession');
@@ -45,21 +50,14 @@ const BudgetPlanner = ({
           min="1"
           max="30"
           value={percent}
-          onChange={(e) => handleBudget(e.target.value)}
+          onChange={handlePercent}
         />
         <p>{percent}%</p>
       </div>
       <div className="budget__data-container">
         <div className="budget__data-salary">
           <p>Your Salary</p>
-          <input
-            type="text"
-            value={salary}
-            onChange={(e) => {
-              setSalary(e.target.value);
-              handleBudget(percent);
-            }}
-          />
+          <input type="text" value={salary} onChange={handleSalary} />
         </div>
         <div className="budget__data-expense">
           <p>Your Expense</p>
@@ -76,4 +74,4 @@ const BudgetPlanner = ({
   );
 };
 
-export default BudgetPlanner;
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetPlanner);
