@@ -2,7 +2,8 @@
 @import './constants';
 
 .btn {
-  padding: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
   background-color: $accent;
   color: $light;
   border: none;
@@ -25,4 +26,9 @@
 
 .small-btn {
   font-size: 1.25rem;
+}
+
+.btn-alert {
+  background-color: $alert;
+  color: $light;
 }
