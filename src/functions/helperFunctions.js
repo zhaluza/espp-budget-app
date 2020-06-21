@@ -1,5 +1,5 @@
 export const formatNum = (num) => {
-  const numStr = num.toFixed(2);
+  const numStr = parseFloat(num).toFixed(2);
   const decimal = numStr.indexOf('.') || numStr.length - 1;
   const arrStr = numStr.split('');
   let count = 0;
