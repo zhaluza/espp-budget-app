@@ -26,13 +26,13 @@ const dataReducer = (state = initialState, action) => {
     case types.HANDLE_SALARY:
       const salary = action.payload;
       val = state.percent / 100;
-      expense = formatNum((state.salary / 12) * val);
-      savings = formatNum((state.salary / 12) * (1 - val));
+      expense = formatNum((salary / 12) * val);
+      savings = formatNum((salary / 12) * (1 - val));
       return {
         ...state,
-        salary,
         expense,
         savings,
+        salary,
       };
 
     default:
