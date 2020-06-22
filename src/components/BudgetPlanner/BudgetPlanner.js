@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 import { Link } from 'react-router-dom';
+import { formatNum } from '../../functions/helperFunctions';
 import './budgetPlanner.scss';
 
 const mapStateToProps = (state) => ({
@@ -70,13 +71,13 @@ const BudgetPlanner = ({
             <input type="number" value={salary} onChange={handleSalary} />
           </div>
         </div>
-        <div className="budget__data-expense row">
+        <div className="budget__data-expense data-row row">
           <p>Your Expense</p>
-          <p>${expense}</p>
+          <p>${formatNum(expense)}</p>
         </div>
-        <div className="budget__data-savings row">
+        <div className="budget__data-savings data-row row">
           <p>Savings</p>
-          <p>${savings}</p>
+          <p>${formatNum(savings)}</p>
         </div>
       </div>
 
