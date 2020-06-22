@@ -1,5 +1,11 @@
 @import '../../styles/colors';
 
+.card {
+  h2,
+  p {
+    text-align: center;
+  }
+}
 .btn {
   a {
     font-family: 'Lato', sans-serif;
