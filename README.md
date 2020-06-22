@@ -28,8 +28,9 @@ To demo a live version of this app,
 
 ## About The Project
 
-[![Budget View][product-screenshot]](assets/screenshot_1.png)
-
+<p align="center">
+    <img width="500" src="https://github.com/zhaluza/espp-budget-app/blob/master/assets/screenshot_1.png?raw=true">
+</p>
 ### Built With
 
 - [React](https://reactjs.org/)
