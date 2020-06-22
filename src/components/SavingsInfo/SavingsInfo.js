@@ -57,11 +57,11 @@ const SavingsInfo = ({
         </div>
         <div className="data__row row">
           <p>Your Expense</p>
-          <p>${expense}</p>
+          <p>${formatNum(expense)}</p>
         </div>
         <div className="data__row row">
           <p>Your Savings</p>
-          <p>${savings}</p>
+          <p>${formatNum(savings)}</p>
         </div>
       </div>
       <button className="btn small-btn">
