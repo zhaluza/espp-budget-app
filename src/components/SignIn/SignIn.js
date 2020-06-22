@@ -19,7 +19,9 @@ const SignIn = ({ isLoggedIn, setIsLoggedIn, username, setUsername }) => {
   }, [username]);
 
   return (
-    <div>
+    <div className="card">
+      <h2>EESP Budget App</h2>
+      <p>Control your future.</p>
       <button className="btn big-btn" type="button">
         <a href="https://github.com/login/oauth/authorize?client_id=f19e5c8797adfbdf16f7">
           Log in with Github
