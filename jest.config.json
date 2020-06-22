@@ -1,0 +1,7 @@
+{
+  "moduleNameMapper": {
+    "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+  },
+  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
+}
