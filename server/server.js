@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
+app.use(express.static(path.resolve(__dirname, '../dist')));
 
 app.use('/redirect', async (req, res) => {
   const requestToken = req.query.code;
@@ -28,13 +28,18 @@ app.use('/redirect', async (req, res) => {
         Authorization: 'token ' + token,
       },
     });
-    return res
-      .cookie('user', userInfo.data.name, {
-        httpOnly: true,
-        // expires in 10 minutes
-        maxAge: 600000,
-      })
-      .redirect('http://localhost:8080');
+    return (
+      res
+        .cookie('user', userInfo.data.name, {
+          httpOnly: true,
+          // expires in 10 minutes
+          maxAge: 600000,
+        })
+        // .redirect('http://localhost:8080')
+        .redirect(
+          process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:8080'
+        )
+    );
   } catch (err) {
     throw new Error(err);
   }
